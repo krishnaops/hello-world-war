@@ -25,10 +25,16 @@
 		</plugins>
 	</build>
 	<distributionManagement>
-  <snapshotRepository>
-    <id>snapshots</id>
-    <url>http://54.209.99.144:8081/nexus/content/repositories/snapshots</url>
-  </snapshotRepository>
+    <repository>
+        <id>central</id>
+        <name>ip-172-31-27-213.ec2.internal-releases</name>
+        <url>http://54.146.231.149:8081/artifactory/repositary</url>
+    </repository>
+    <snapshotRepository>
+        <id>snapshots</id>
+        <name>ip-172-31-27-213.ec2.internal-snapshots</name>
+        <url>http://54.146.231.149:8081/artifactory/repositary</url>
+    </snapshotRepository>
 </distributionManagement>
 
 </project>
