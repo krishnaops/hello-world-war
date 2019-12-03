@@ -29,7 +29,7 @@
         <id>central</id>
         <name>ip-172-31-27-213.ec2.internal-releases</name>
         <url>http://54.146.231.149:8081/artifactory/repositary</url>
-   
+		</repository>
     <snapshotRepository>
         <id>snapshots</id>
         <name>ip-172-31-27-213.ec2.internal-snapshots</name>
