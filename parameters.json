@@ -1,0 +1,15 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_ansibleslave_name": {
+            "value": null
+        },
+        "disks_ansibleslave_OsDisk_1_7bfca19ddaf44bec925a765aee1fcf90_externalid": {
+            "value": null
+        },
+        "networkInterfaces_ansibleslave356_externalid": {
+            "value": null
+        }
+    }
+}

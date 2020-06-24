@@ -1,0 +1,74 @@
+{
+    "$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+    "contentVersion": "1.0.0.0",
+    "parameters": {
+        "virtualMachines_ansibleslave_name": {
+            "defaultValue": "ansibleslave",
+            "type": "String"
+        },
+        "disks_ansibleslave_OsDisk_1_7bfca19ddaf44bec925a765aee1fcf90_externalid": {
+            "defaultValue": "/subscriptions/008cbd8c-f9be-4668-934c-e755e7633665/resourceGroups/ANSIBLE/providers/Microsoft.Compute/disks/ansibleslave_OsDisk_1_7bfca19ddaf44bec925a765aee1fcf90",
+            "type": "String"
+        },
+        "networkInterfaces_ansibleslave356_externalid": {
+            "defaultValue": "/subscriptions/008cbd8c-f9be-4668-934c-e755e7633665/resourceGroups/Ansible/providers/Microsoft.Network/networkInterfaces/ansibleslave356",
+            "type": "String"
+        }
+    },
+    "variables": {},
+    "resources": [
+        {
+            "type": "Microsoft.Compute/virtualMachines",
+            "apiVersion": "2019-07-01",
+            "name": "[parameters('virtualMachines_ansibleslave_name')]",
+            "location": "eastus",
+            "properties": {
+                "hardwareProfile": {
+                    "vmSize": "Standard_A2_v2"
+                },
+                "storageProfile": {
+                    "imageReference": {
+                        "publisher": "RedHat",
+                        "offer": "RHEL",
+                        "sku": "8.2",
+                        "version": "latest"
+                    },
+                    "osDisk": {
+                        "osType": "Linux",
+                        "name": "[concat(parameters('virtualMachines_ansibleslave_name'), '_OsDisk_1_7bfca19ddaf44bec925a765aee1fcf90')]",
+                        "createOption": "FromImage",
+                        "caching": "ReadWrite",
+                        "managedDisk": {
+                            "id": "[parameters('disks_ansibleslave_OsDisk_1_7bfca19ddaf44bec925a765aee1fcf90_externalid')]"
+                        }
+                    },
+                    "dataDisks": []
+                },
+                "osProfile": {
+                    "computerName": "[parameters('virtualMachines_ansibleslave_name')]",
+                    "adminUsername": "[parameters('virtualMachines_ansibleslave_name')]",
+                    "linuxConfiguration": {
+                        "disablePasswordAuthentication": false,
+                        "provisionVMAgent": true
+                    },
+                    "secrets": [],
+                    "allowExtensionOperations": true,
+                    "requireGuestProvisionSignal": true
+                },
+                "networkProfile": {
+                    "networkInterfaces": [
+                        {
+                            "id": "[parameters('networkInterfaces_ansibleslave356_externalid')]"
+                        }
+                    ]
+                },
+                "diagnosticsProfile": {
+                    "bootDiagnostics": {
+                        "enabled": true,
+                        "storageUri": "https://ansiblediag528.blob.core.windows.net/"
+                    }
+                }
+            }
+        }
+    ]
+}
